@@ -2,6 +2,8 @@ package co.za.techtefo.msprojectprocessor.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Task {
     @JsonProperty("name")
@@ -91,8 +93,19 @@ public class Task {
     @JsonProperty("depends_on_tasks")
     private String dependsOnTasks;
 
+    @JsonProperty("depends_on")
+    private List<TaskDependsOn> depends_on;
+
     @JsonProperty("act_start_date")
     private String actualStartDate;
+
+    public List<TaskDependsOn> getDepends_on() {
+        return depends_on;
+    }
+
+    public void setDepends_on(List<TaskDependsOn> depends_on) {
+        this.depends_on = depends_on;
+    }
 
     @JsonProperty("actual_time")
     private Double actualTime;
@@ -510,53 +523,8 @@ public class Task {
         this.seen = seen;
     }
 
-    public Task(String name, String creation, String modified, String modifiedBy, String owner, Integer docStatus, Integer idx, String subject, String project, String issue, String type, String color, Integer isGroup, Integer isTemplate, String status, String priority, Double taskWeight, String parentTask, String completedBy, String completedOn, String expectedStartDate, Double expectedTime, Integer start, String expectedEndDate, Double progress, Integer duration, Integer isMilestone, String description, String dependsOnTasks, String actualStartDate, Double actualTime, String actualEndDate, Double totalCostingAmount, Double totalBillingAmount, String reviewDate, String closingDate, String department, String company, Integer lft, Integer rgt, String oldParent, String userTags, String comments, String assign, String likedBy, String seen) {
-        this.name = name;
-        this.creation = creation;
-        this.modified = modified;
-        this.modifiedBy = modifiedBy;
-        this.owner = owner;
-        this.docStatus = docStatus;
-        this.idx = idx;
+    public Task(String subject) {
         this.subject = subject;
-        this.project = project;
-        this.issue = issue;
-        this.type = type;
-        this.color = color;
-        this.isGroup = isGroup;
-        this.isTemplate = isTemplate;
-        this.status = status;
-        this.priority = priority;
-        this.taskWeight = taskWeight;
-        this.parentTask = parentTask;
-        this.completedBy = completedBy;
-        this.completedOn = completedOn;
-        this.expectedStartDate = expectedStartDate;
-        this.expectedTime = expectedTime;
-        this.start = start;
-        this.expectedEndDate = expectedEndDate;
-        this.progress = progress;
-        this.duration = duration;
-        this.isMilestone = isMilestone;
-        this.description = description;
-        this.dependsOnTasks = dependsOnTasks;
-        this.actualStartDate = actualStartDate;
-        this.actualTime = actualTime;
-        this.actualEndDate = actualEndDate;
-        this.totalCostingAmount = totalCostingAmount;
-        this.totalBillingAmount = totalBillingAmount;
-        this.reviewDate = reviewDate;
-        this.closingDate = closingDate;
-        this.department = department;
-        this.company = company;
-        this.lft = lft;
-        this.rgt = rgt;
-        this.oldParent = oldParent;
-        this.userTags = userTags;
-        this.comments = comments;
-        this.assign = assign;
-        this.likedBy = likedBy;
-        this.seen = seen;
     }
 
     public Task() {

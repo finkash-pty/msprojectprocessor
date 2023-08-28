@@ -173,6 +173,23 @@ public class ERPNextService {
         return response.getBody();
     }
 
+    public Task updateTask(Task task) {
+        String url = erpnextBaseUrl + "/api/resource/Task/" + task.getName();
+
+        HttpHeaders headers = new HttpHeaders();
+        String authHeader = "token " + apiKey + ":" + apiSecret;
+        headers.set("Authorization", authHeader);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Task> requestEntity = new HttpEntity<>(task, headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<TaskResponse> response = restTemplate.exchange(
+                url, HttpMethod.PUT, requestEntity, TaskResponse.class);
+
+        return response.getBody().getData();
+    }
+
     public String deleteProject(String projectId) {
         String url = erpnextBaseUrl + "/api/resource/Project/" + projectId;
 
